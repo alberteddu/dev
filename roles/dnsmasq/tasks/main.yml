@@ -2,12 +2,12 @@
 
 - name: Install dnsmasq
   homebrew:
-    name: dnsmasq
+    name: "dnsmasq"
 
 - name: Create resolver directory
   file:
-    path: /etc/resolver
-    state: directory
+    path: "/etc/resolver"
+    state: "directory"
 
 - name: Set up dnsmasq
   shell: "{{ item }}"

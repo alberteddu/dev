@@ -18,7 +18,15 @@
     dest: "/usr/local/etc/nginx/servers/{{ item.name }}.conf"
   with_items:
     - "{{ sites }}"
-    - name: info
+    - name: "info"
   when: "item"
 
+- name: Create info directory
+  file:
+    path: "{{ sites_path }}/info"
+    state: "directory"
 
+- name: Add info virtual host
+  copy:
+    src: "templates/info.php"
+    dest: "{{ sites_path }}/info/index.php"
