@@ -1,0 +1,23 @@
+---
+
+- name: Install dnsmasq
+  homebrew:
+    name: dnsmasq
+
+- name: Create resolver directory
+  file:
+    path: /etc/resolver
+    state: directory
+
+- name: Set up dnsmasq
+  shell: "{{ item }}"
+  with_items:
+    - "echo 'address=/.dev/127.0.0.1' > $(brew --prefix)/etc/dnsmasq.conf"
+    - "echo 'listen-address=127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf"
+    - "echo 'port=35353' >> $(brew --prefix)/etc/dnsmasq.conf"
+    - "bash -c 'echo \"nameserver 127.0.0.1\" > /etc/resolver/dev'"
+    - "bash -c 'echo \"port 35353\" >> /etc/resolver/dev'"
+  become: true
+
+- name: Autostart dnsmasq
+  shell: "brew services start dnsmasq"

@@ -1,0 +1,24 @@
+---
+
+- find:
+    paths: /usr/local/etc/nginx/servers
+    file_type: file
+    patterns: "*.conf"
+  register: old_config_files
+
+- name: Clear old configuration files
+  file:
+    path: "{{ item.path }}"
+    state: "absent"
+  with_items: "{{ old_config_files.files }}"
+
+- name: Copy virtual host config
+  template:
+    src: "templates/host.conf.j2"
+    dest: "/usr/local/etc/nginx/servers/{{ item.name }}.conf"
+  with_items:
+    - "{{ sites }}"
+    - name: info
+  when: "item"
+
+

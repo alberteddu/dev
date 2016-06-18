@@ -1,0 +1,3 @@
+sites_path: "{{ lookup('env','HOME') }}/Sites"
+
+sites: ~

@@ -1,0 +1,36 @@
+---
+
+- name: Tap PHP homebrew
+  homebrew_tap:
+    name: "{{ item }}"
+  with_items:
+    - "homebrew/dupes"
+    - "homebrew/versions"
+    - "homebrew/homebrew-php"
+
+- name: Install PHP
+  homebrew:
+    name: php56
+    install_options: --with-fpm
+
+- name: Install MySQL
+  homebrew:
+    name: mysql
+
+- name: Install nginx
+  homebrew:
+    name: nginx
+
+- name: Set nginx plist permissions
+  shell: "{{ item }}"
+  with_items:
+    - "cp /usr/local/opt/nginx/*.plist /Library/LaunchDaemons"
+    - "launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist"
+  become: true
+
+- name: Autostart MySQL, PHP-FPM
+  shell: "brew services start {{ item }}"
+  with_items:
+    - "mysql"
+    - "nginx"
+    - "php56"

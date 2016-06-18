@@ -1,0 +1,21 @@
+---
+
+-
+  hosts: localhost
+  roles:
+    - php-mysql
+    - nginx
+    - dnsmasq
+    - virtual-hosts
+
+  pre_tasks:
+    - include_vars: "sites.yml"
+      ignore_errors: true
+
+  post_tasks:
+    - name: Restart nginx
+      shell: "{{ item }}"
+      with_items:
+        - "brew services restart php56"
+        - "nginx -s reload || nginx"
+      become: true

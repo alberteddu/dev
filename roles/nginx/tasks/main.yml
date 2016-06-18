@@ -1,0 +1,7 @@
+---
+
+- name: nginx config
+  copy:
+    src: "templates/nginx.conf"
+    dest: "/usr/local/etc/nginx/nginx.conf"
+

@@ -1,0 +1,4 @@
+.idea
+sites.yml
+.DS_Store
+playbook.retry
