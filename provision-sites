@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+DEV_PATH="$HOME/.dev"
+
+ansible-playbook ${DEV_PATH}/sites-playbook.yml --inventory ${DEV_PATH}/inventory --ask-become-pass

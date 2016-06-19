@@ -2,3 +2,4 @@
 sites.yml
 .DS_Store
 playbook.retry
+sites-playbook.retry

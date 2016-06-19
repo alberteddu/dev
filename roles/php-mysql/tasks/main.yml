@@ -13,6 +13,8 @@
     name: php56
     install_options: --with-fpm
 
+- include: composer.yml
+
 - name: Copy Xdebug ini
   copy:
     src: "templates/ext-xdebug.ini"
