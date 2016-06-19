@@ -13,6 +13,17 @@
     name: php56
     install_options: --with-fpm
 
+- name: PHP ini settings
+  lineinfile:
+    dest: "{{ item[0] }}"
+    regexp: "^{{ item[1].name }} ="
+    line: "{{ item[1].name }} = {{ item[1].value }}"
+  with_nested:
+    - "{{ php.ini_files }}"
+    - "{{ php.ini_settings }}"
+  become: true
+
+
 - include: composer.yml
 
 - name: Copy Xdebug ini
