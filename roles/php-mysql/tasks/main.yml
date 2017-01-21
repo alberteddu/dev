@@ -10,7 +10,7 @@
 
 - name: Install PHP
   homebrew:
-    name: php56
+    name: php71
     install_options: --with-fpm
 
 - name: PHP ini settings
@@ -29,11 +29,11 @@
 - name: Copy Xdebug ini
   copy:
     src: "templates/ext-xdebug.ini"
-    dest: "/usr/local/etc/php/5.6/conf.d/ext-xdebug.ini"
+    dest: "/usr/local/etc/php/7.1/conf.d/ext-xdebug.ini"
 
 - name: Install Xdebug
   homebrew:
-    name: php56-xdebug
+    name: php71-xdebug
 
 - name: Install MySQL
   homebrew:
@@ -55,4 +55,4 @@
   with_items:
     - "mysql"
     - "nginx"
-    - "php56"
+    - "php71"

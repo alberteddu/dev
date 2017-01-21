@@ -2,7 +2,7 @@
 
 php:
   ini_files:
-      - "/usr/local/etc/php/5.6/php.ini"
+      - "/usr/local/etc/php/7.1/php.ini"
 
   ini_settings:
     - name: "memory_limit"
