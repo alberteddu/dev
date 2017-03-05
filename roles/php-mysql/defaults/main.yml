@@ -1,8 +1,12 @@
 ---
 
+config:
+  php_version_long: 7.1
+  php_version_short: 71
+
 php:
   ini_files:
-      - "/usr/local/etc/php/7.1/php.ini"
+      - "/usr/local/etc/php/{{ config.php_version_long }}/php.ini"
 
   ini_settings:
     - name: "memory_limit"
@@ -11,3 +15,5 @@ php:
       value: "Europe/Berlin"
     - name: "max_execution_time"
       value: "300"
+    - name: "phar.readonly"
+      value: "0"

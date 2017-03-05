@@ -13,6 +13,6 @@
     - name: Restart nginx
       shell: "{{ item }}"
       with_items:
-        - "brew services restart php71"
+        - "brew services restart php{{ config.php_version_short }}"
         - "nginx -s reload || nginx"
       become: true

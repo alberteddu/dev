@@ -1,5 +1,6 @@
 .idea
 sites.yml
+config.yml
 .DS_Store
 playbook.retry
 sites-playbook.retry
