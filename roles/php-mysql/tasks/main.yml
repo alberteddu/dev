@@ -48,6 +48,11 @@
   homebrew:
     name: mysql
 
+- name: Create nginx conf directory
+  file:
+    path: "/usr/local/etc/php/{{ config.php_version_long}}/conf.d/"
+    state: "directory"
+
 - name: Install nginx
   homebrew:
     name: nginx
