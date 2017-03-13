@@ -17,3 +17,14 @@ php:
       value: "300"
     - name: "phar.readonly"
       value: "0"
+    - name: "session.save_path"
+      value: "/tmp/"
+
+  fpm_files:
+      - "/usr/local/etc/php/{{ config.php_version_long }}/php-fpm.d/www.conf"
+
+  fpm_settings:
+    - name: "user"
+      value: "{{ whoami }}"
+    - name: "group"
+      value: "staff"
