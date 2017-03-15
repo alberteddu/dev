@@ -21,7 +21,10 @@ php:
       value: "/tmp/"
 
   fpm_files:
-      - "/usr/local/etc/php/{{ config.php_version_long }}/php-fpm.d/www.conf"
+      - name: file_only
+        path: "/usr/local/etc/php/{{ config.php_version_long }}/php-fpm.conf"
+      - name: with_directory
+        path: "/usr/local/etc/php/{{ config.php_version_long }}/php-fpm.d/www.conf"
 
   fpm_settings:
     - name: "user"
