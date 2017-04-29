@@ -19,7 +19,19 @@
   with_items:
     - "{{ sites }}"
     - name: "info"
-  when: "item"
+  when:
+      - "item"
+      - "item.config is undefined"
+
+- name: Copy virtual host custom config
+  template:
+    src: "../../server-config/{{ item.config }}.conf.j2"
+    dest: "/usr/local/etc/nginx/servers/{{ item.name }}.conf"
+  with_items:
+    - "{{ sites }}"
+  when:
+      - "item"
+      - "item.config is defined"
 
 - name: Create info directory
   file:

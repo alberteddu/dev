@@ -6,6 +6,12 @@
     - virtual-hosts
 
   pre_tasks:
+    - shell: whoami
+      register: whoami
+    - set_fact:
+        whoami: "{{ whoami.stdout }}"
+    - include_vars: "config.yml"
+      ignore_errors: true
     - include_vars: "sites.yml"
       ignore_errors: true
 
